@@ -76,3 +76,6 @@ RUN echo "Installing Gradle" \
 	&& rm gradle.zip \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
+
+RUN echo "Install React Native CLI" \
+        && yarn global add react-native-cli
