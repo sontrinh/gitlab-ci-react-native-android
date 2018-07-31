@@ -28,6 +28,7 @@ RUN apt-get -qq update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
+      gnupg2 \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
@@ -66,10 +67,10 @@ RUN echo "Installing Fastlane 2.61.0" \
 	&& gem cleanup
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 3.3
+ENV GRADLE_VERSION 4.4
 
 RUN echo "Downloading Gradle" \
-	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
+	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-all.zip"
 
 RUN echo "Installing Gradle" \
 	&& unzip gradle.zip \
@@ -78,4 +79,4 @@ RUN echo "Installing Gradle" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
 
 RUN echo "Install React Native CLI" \
-        && yarn global add react-native-cli
+	&& yarn global add react-native-cli
